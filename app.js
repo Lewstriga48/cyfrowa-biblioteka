@@ -1,4 +1,4 @@
-// Ortam değişkenlerini yükle
+// Load environment variables
 require('dotenv').config();
 
 const express = require('express');
@@ -9,16 +9,16 @@ const methodOverride = require('method-override');
 
 const app = express();
 
-// MongoDB Atlas bağlantısı (güncel - eski opsiyonlar kaldırıldı)
+// Connect to MongoDB Atlas (clean version – deprecated options removed)
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('✅ MongoDB Atlas bağlantısı başarılı');
+    console.log('✅ Successfully connected to MongoDB Atlas');
   })
   .catch((err) => {
-    console.error('❌ MongoDB bağlantı hatası:', err);
+    console.error('❌ MongoDB connection error:', err);
   });
 
-// Middleware ayarları
+// Middleware settings
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,13 +28,13 @@ app.set('view engine', 'ejs');
 const bookRoutes = require('./routes/bookRoutes');
 app.use('/books', bookRoutes);
 
-// Ana sayfa yönlendirmesi
+// Redirect to main page
 app.get('/', (req, res) => {
   res.redirect('/books');
 });
 
-// Sunucuyu başlat
+// Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Sunucu http://localhost:${PORT} adresinde çalışıyor`);
+  console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
