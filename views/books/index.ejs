@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+
+<h1 class="mb-4">📚 Book List</h1>
+
+<!-- Search Form -->
+<form class="input-group mb-3" method="GET" action="/books">
+  <input
+    type="text"
+    name="search"
+    class="form-control"
+    placeholder="Search by title..."
+    value="<%= typeof search !== 'undefined' ? search : '' %>"
+  >
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+
+<!-- Add Book Button -->
+<a href="/books/new" class="btn btn-primary mb-3">➕ Add New Book</a>
+
+<!-- Book Table -->
+<% if (books.length === 0) { %>
+  <div class="alert alert-warning">No books found.</div>
+<% } else { %>
+  <table class="table table-bordered bg-white shadow-sm">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(book => { %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.year %></td>
+          <td>
+            <a href="/books/<%= book._id %>" class="btn btn-sm btn-info">Details</a>
+            <a href="/books/<%= book._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+            <form action="/books/<%= book._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('../partials/footer') %>

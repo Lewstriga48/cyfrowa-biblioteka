@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<h1 class="mb-4">Edit Book</h1>
+
+<form action="/books/<%= book._id %>?_method=PUT" method="POST" class="bg-white p-4 shadow-sm rounded">
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Book Title</label>
+    <input type="text" name="title" id="title" class="form-control" value="<%= book.title %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="author" class="form-label">Author</label>
+    <input type="text" name="author" id="author" class="form-control" value="<%= book.author %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="year" class="form-label">Publication Year</label>
+    <input type="number" name="year" id="year" class="form-control" value="<%= book.year %>" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Book</button>
+  <a href="/books" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>
