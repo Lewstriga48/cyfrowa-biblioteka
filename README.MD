@@ -49,13 +49,12 @@ This is a student project designed to demonstrate:
 ## 🔧 Installation – Step by Step
 
 ### 1. Clone the Repository
-```bash
+
 git clone https://github.com/your-username/cyfrowa-biblioteka.git
 cd cyfrowa-biblioteka
+
 2. Install All Dependencies
-bash
-Copy
-Edit
+
 npm install
 Installs:
 
@@ -76,25 +75,14 @@ This file holds your sensitive MongoDB connection string.
 
 Example .env file:
 
-ini
-Copy
-Edit
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/library
-4. Run the Application
-bash
-Copy
-Edit
-node app.js
-Open your browser:
 
-bash
-Copy
-Edit
-http://localhost:3000/books
+4. Run the Application
+node app.js
+Open your browser:http://localhost:3000/books
+
 📁 Project Structure
-bash
-Copy
-Edit
+
 cyfrowa-biblioteka/
 ├── controllers/
 │   └── bookController.js     # Contains all logic for handling books
